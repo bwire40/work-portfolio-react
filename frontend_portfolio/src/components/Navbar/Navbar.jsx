@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.scss";
 import { images } from "../../constants";
 
 import { HiMenuAlt4 } from "react-icons/hi";
+import { AiOutlineClose } from "react-icons/ai";
+import { motion } from "framer-motion";
 
 function Navbar() {
+  // states
+  const [toggle, setToggle] = useState(false);
   // nav items
   const navLinks = ["home", "about", "work", "skills", "contact"];
   return (
@@ -29,7 +33,23 @@ function Navbar() {
 
       {/* mobile view  */}
       <div className="app__navbar-menu">
-        <HiMenuAlt4 />
+        <HiMenuAlt4 onClick={() => setToggle(true)} />
+
+        {toggle && (
+          <motion.div
+            whileInView={{ x: [300, 0] }}
+            transition={{ duration: 0.85, ease: "easeInOut" }}
+          >
+            <AiOutlineClose onClick={(prev) => setToggle(!prev)} />
+            <ul>
+              {navLinks.map((item) => (
+                <li key={`${item}`} className="">
+                  <a href={`#${item}`}>{item}</a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
       </div>
     </nav>
   );
