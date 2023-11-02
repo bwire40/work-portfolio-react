@@ -1,3 +1,19 @@
+import { About, Footer, Header, Skills, Work, Testimonials } from "./container";
+import { Navbar } from "./components";
+import "./App.scss";
+
 export default function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <div className="app">
+        <Navbar />
+        <Header />
+        <About />
+        <Work />
+        <Skills />
+        <Testimonials />
+        <Footer />
+      </div>
+    </>
+  );
 }
